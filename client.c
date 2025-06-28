@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include <time.h>
 
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -49,9 +50,23 @@ int startConnection(int argc, char **argv, int s) // Implementa a conexão com o
 int main(int argc, char **argv)
 {
 	int s;				// Inicialização do Socket
+	char Game[10];
+	int num = 0;
 	
 	s = startConnection(argc, argv, s); // Faz socket(), bind(), listen() e accept()
 
-	recv(s, &Game, sizeof(Game), 0);
+	while(1){
 
+		recv(s, &Game, sizeof(Game), 0);
+
+		printf("%s\n",Game);
+
+		strcpy(Game,"Entao ok");
+		send(s,&Game, sizeof(Game),0);
+
+		sleep(1);
+		num++;
+		printf("%d\n",num);
+
+	}
 }

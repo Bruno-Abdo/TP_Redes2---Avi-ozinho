@@ -12,4 +12,13 @@ int addrparse(const char *addrstr, const char *portstr,
 void addrtostr(const struct sockaddr *addr, char *str, size_t strsize);
 
 int server_sockaddr_init(const char *proto, const char *portstr,
-                         struct sockaddr_storage *storage);    
+                         struct sockaddr_storage *storage);
+                         
+#define STR_LEN 11
+struct aviator_msg {
+int32_t player_id;
+float value;
+char type[STR_LEN];
+float player_profit;
+float house_profit;
+};
