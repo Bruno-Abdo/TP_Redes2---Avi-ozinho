@@ -15,10 +15,24 @@ int server_sockaddr_init(const char *proto, const char *portstr,
                          struct sockaddr_storage *storage);
                          
 #define STR_LEN 11
-struct aviator_msg {
+#define BUFSZ 1024
+typedef struct{
 int32_t player_id;
 float value;
 char type[STR_LEN];
 float player_profit;
 float house_profit;
-};
+}aviator_msg;
+
+typedef struct {  
+    int socket;
+    int connected;
+    float time_to_wait;
+    char events[10];
+    int dest_msg;
+    int client_sock;
+    float V;
+    int N;
+    float Me;
+    float M;
+} newConection;

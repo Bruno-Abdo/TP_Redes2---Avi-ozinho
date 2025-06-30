@@ -72,7 +72,11 @@ int main(int argc, char **argv){
 	float aposta = 0;
 	newConection *client = malloc(sizeof(newConection));
 
+	char nick[13];
+
 	s = startConnection(argc, argv, s); // Faz socket(), bind(), listen() e accept()
+
+	strcpy(nick,argv[4]);
 
 	strcpy(Game.type,"start");
 	pthread_t bets;
@@ -87,6 +91,8 @@ int main(int argc, char **argv){
 	while(1){
 
 		recv(s,&Game,sizeof(Game),0);
+
+		printf("Client id: %d\n",Game.player_id);
 
 		if(!*check){
 			strcpy(Game.type,"cashout");
@@ -162,4 +168,5 @@ int main(int argc, char **argv){
 	}//while
 
 	free(check);
+	close(s);
 }//main
